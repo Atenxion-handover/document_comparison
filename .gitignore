@@ -3,9 +3,8 @@ __pycache__
 .env
 test*
 reports
-data_sources
 logs
 chunks
-multilingual_docs
 compared_doc
 guideline_app/
+.DS_Store
