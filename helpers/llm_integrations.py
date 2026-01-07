@@ -9,13 +9,16 @@ def get_llm(model: Model, temperature: float = 0.0) -> ChatAnthropic | ChatOpenA
     chat_engine: Engine = LLM_MAPPING.get(model, "openai")
     match chat_engine:
         case "openai":
-            return ChatOpenAI(
-                model=model,
-                # temperature=temperature,
-                use_responses_api=True,
-                reasoning_effort="minimal",
-                # max_completion_tokens=32000,
-            )
+            if model.startswith("gpt-5"):
+                return ChatOpenAI(
+                    model=model,
+                    # temperature=temperature,
+                    use_responses_api=True,
+                    reasoning_effort="minimal",
+                    # max_completion_tokens=32000,
+                )
+            else:
+                return ChatOpenAI(model=model, temperature=temperature)
         case "anthropic":
             return ChatAnthropic(model=model, temperature=temperature, max_tokens=8000)
         case "google":
