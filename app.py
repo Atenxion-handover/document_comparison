@@ -44,7 +44,7 @@ if session_state.doc1 is None or session_state.doc2 is None:
 compare_btn = st.button(label="Compare", type="secondary", key="compare_btn")
 
 if compare_btn:
-    chain = DocumentComparisonGPT()
+    chain = DocumentComparisonGPT(chat_model_name=session_state.chat_model)
     start_time = perf_counter()
     doc1 = session_state.doc1.getvalue()
     doc2 = session_state.doc2.getvalue()
